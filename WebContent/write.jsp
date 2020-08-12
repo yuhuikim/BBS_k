@@ -11,13 +11,7 @@
 <!-- 참조  -->
 <link rel="stylesheet" href="css/custom.css">
 <!-- 참조  -->
-<script>
-    function doSubmit() {
-        Frm.encoding = "application/x-www-form-urlencoded";
-        Frm.action = "writeAction.jsp";
-        Frm.submit();
-    }
-</script>
+
 
 <title>건국대학교</title>
 </head>
@@ -63,8 +57,7 @@
 	<!-- 글 작성 양식 -->
 	<div class="container">
 		<div class="row">
-			<form method="post" id="Frm" action="writeAction.jsp"
-				enctype="multipart/form-data">
+			<form method="post" action="writeAction.jsp">
 				<table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd">
 					<thead>
@@ -82,16 +75,20 @@
 						<tr>
 							<!-- 장문의 글을 위해서  -->
 							<td><textarea class="form-control" placeholder="글 내용"
-									name="bbsContent" maxlength="2048" style="height: 350px;"></textarea></td>
-						</tr>
-						<tr>
-							<td>파일: <br /> <input type="file" name="file1"	accept="image/*" />
-							</td>
+									name="bbsContent" maxlength="2048" style="height: 350px;">
+							</textarea></td>
 						</tr>
 					</tbody>
 				</table>
-				<input type="submit" class="btn btn-primary pull-right"
-					onclick="doSubmit()" value="글쓰기">
+				<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+			</form>
+
+			<form action="fileAction.jsp" method="post" enctype="multipart/form-data">
+			
+
+				<input type="file" name="file1" accept="image/*" /><br>
+				<input type="submit" class="btn btn-primary pull-left" value="파일업로드">
+
 			</form>
 		</div>
 	</div>

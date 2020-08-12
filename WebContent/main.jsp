@@ -38,6 +38,7 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="main.jsp">메인</a></li>
 				<li><a href="bbs.jsp">과제게시판</a></li>
+				<li><a href="notice.jsp">공지사항</a></li>
 			</ul>
 			<%
 				// 접속하기는 로그인이 되어있지 않은 경우만 나오게한다.
