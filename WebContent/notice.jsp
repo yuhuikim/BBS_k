@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs.BbsDAO"%>
-<%@ page import="bbs.Bbs"%>
+<%@ page import="notice.NoticeDAO"%>
+<%@ page import="notice.Notice"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="css/custom.css">
 <!-- 참조  -->
 
-<title>게시판 사이트</title>
+<title>공지사항 사이트</title>
 
 <!-- 이 페이지 안에서만 사용할 스타일 태그 넣어주기 - 밑줄이 그어지지 않고 글씨도 검은색으로 보여지게 된다.-->
 <style type="text/css">
@@ -104,18 +104,18 @@ a, a:hover {
 					<!-- 게시판 글 목록 -->
 					<%
 					    //게시글을 뽑아올 수 있도록 하나의 인스턴스를 만들어준다.
-					    BbsDAO bbsDAO = new BbsDAO();
-					    ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+					    NoticeDAO noticeDAO = new NoticeDAO();
+					    ArrayList<Notice> list = noticeDAO.getList(pageNumber);
 					    for (int i = 0; i < list.size(); i++) {
 					%>
 					<tr>
-						<td><%=list.get(i).getBbsID()%></td>
+						<td><%=list.get(i).getNoticeID()%></td>
 						<!-- 제목을 눌렀을 때 해당 게시글의 내용을 보여주는 페이지로 보여줘야 하기 때문에 view.jsp로 해준다.-->
-						<td><a href="view.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle()%></a></td>
-						<td><%=list.get(i).getUserID()%></td>
+						<td><a href="view2.jsp?noticeID=<%=list.get(i).getNoticeID()%>"><%=list.get(i).getNoticeTitle()%></a></td>
+						<td><%=list.get(i).getNoticeName()%></td>
 						<!-- 날짜를 우리가 보기 좋게 표현하기 위해서 한다. -->
-						<td><%=list.get(i).getBbsDate().substring(0, 11) + list.get(i).getBbsDate().substring(11, 13) + "시"
-                        + list.get(i).getBbsDate().substring(14, 16) + "분"%></td>
+						<td><%=list.get(i).getNoticeDate().substring(0, 11) + list.get(i).getNoticeDate().substring(11, 13)
+                        + "시" + list.get(i).getNoticeDate().substring(14, 16) + "분"%></td>
 					</tr>
 					<%
 					    }
@@ -126,18 +126,18 @@ a, a:hover {
 			<%
 			    if (pageNumber != 1) { //1이 아니라면 2페이지 이상이란 것이고, 그렇다면 이전 페이지로 갈 수 있는 것이 필요하다.
 			%>
-			<a href="bbs.jsp?pageNumber=<%=pageNumber - 1%>"
+			<a href="notice.jsp?pageNumber=<%=pageNumber - 1%>"
 				class="btn btn-success btn-arrow-left">이전</a>
 			<%
 			    }
-			    if (bbsDAO.nextPage(pageNumber + 1)) { //다음 페이지가 존재한다면
+			    if (noticeDAO.nextPage(pageNumber + 1)) { //다음 페이지가 존재한다면
 			%>
-			<a href="bbs.jsp?pageNumber=<%=pageNumber + 1%>"
+			<a href="notice.jsp?pageNumber=<%=pageNumber + 1%>"
 				class="btn btn-success btn-arrow-left">다음</a>
 			<%
 			    }
 			%>
-			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+			<a href="write2.jsp" class="btn btn-primary pull-right">글쓰기</a>
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

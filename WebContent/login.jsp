@@ -28,6 +28,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="index.jsp">메인</a></li>
 				<li><a href="bbs.jsp">과제게시판</a></li>
+				<li><a href="notice.jsp">공지사항</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">

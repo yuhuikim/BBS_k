@@ -5,7 +5,7 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.io.IOException"%>
 <%@ page import="javax.servlet.http.Part"%>
-
+<%-- 
 <%!public void writeFile(Part part) {
         try {
             part.write("c://tempfiles/" + part.getSubmittedFileName());
@@ -13,7 +13,7 @@
             e.printStackTrace();
         }
     }%>
-
+ --%>
 <!-- 자바스크립트 문장사용 -->
 <%
     request.setCharacterEncoding("UTF-8");
@@ -36,8 +36,7 @@
 
 
 	<%
-	 String userID = null;
-
+	    String userID = null;
 
 	    // 로그인 된 사람은 회원가입 페이지에 들어갈 수 없다
 	    if (session.getAttribute("userID") != null) {
@@ -62,11 +61,11 @@
 	            script.println("</script>");
 	        } else { //로그인이 되어있고 내용과 제목 다 입력이 잘 되어있는 상태라면!
 	            System.out.println(2);
-	            BbsDAO bbsDAO = new BbsDAO(); //실제로 데이터베이스에 등록을 해주어야한다--> 하나의 인스턴스르르 만들어준다.
+	            BbsDAO bbsDAO = new BbsDAO(); //실제로 데이터베이스에 등록을 해주어야한다--> 하나의 인스턴스를 만들어준다.
 	            System.out.println(3);
 	            //실제로 게시글을 작성할 수 있도록 해준다--> 차례대로 매개변수를 넣어준다.
 	            int result = bbsDAO.write(bbs.getBbsTitle(), userID, bbs.getBbsContent());
-	          
+
 	            if (result == -1) { // 글쓰기에 실패했을 경우
 	                PrintWriter script = response.getWriter(); //하나의 스크립트 문장을 넣을 수 있도록.
 	                script.println("<script>");

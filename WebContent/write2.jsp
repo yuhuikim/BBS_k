@@ -31,8 +31,8 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="index.jsp">메인</a></li>
-				<li class="active"><a href="bbs.jsp">과제게시판</a></li>
-				<li><a href="notice.jsp">공지사항</a></li>
+				<li><a href="bbs.jsp">과제게시판</a></li>
+				<li class="active"><a href="notice.jsp">공지사항</a></li>
 			</ul>
 			<!-- 로그인 전 화면 -->
 			<ul class="nav navbar-nav navbar-right">
@@ -72,12 +72,12 @@
 					<tbody>
 						<tr>
 							<td><input type="text" class="form-control"
-								placeholder="글 제목" name="bbsTitle" maxlength="50"></td>
+								placeholder="글 제목" name="noticeTitle" maxlength="50"></td>
 						</tr>
 						<tr>
 							<!-- 장문의 글을 위해서  -->
 							<td><textarea class="form-control" placeholder="글 내용"
-									name="bbsContent" maxlength="2048" style="height: 350px;"></textarea></td>
+									name="noticeContent" maxlength="2048" style="height: 350px;"></textarea></td>
 						</tr>
 					</tbody>
 				</table>

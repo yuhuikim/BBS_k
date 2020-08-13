@@ -20,7 +20,7 @@
 <style type = "text/css">
     a, a:hover 
     {
-        color: #000000;
+        color: #000000; 
         text-decoration: none;
     }
 </style>
