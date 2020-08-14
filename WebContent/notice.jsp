@@ -110,9 +110,9 @@ a, a:hover {
 					%>
 					<tr>
 						<td><%=list.get(i).getNoticeID()%></td>
-						<!-- 제목을 눌렀을 때 해당 게시글의 내용을 보여주는 페이지로 보여줘야 하기 때문에 view.jsp로 해준다.-->
+						<!-- 제목을 눌렀을 때 해당 게시글의 내용을 보여주는 페이지로 보여줘야 하기 때문에 view2.jsp로 해준다.-->
 						<td><a href="view2.jsp?noticeID=<%=list.get(i).getNoticeID()%>"><%=list.get(i).getNoticeTitle()%></a></td>
-						<td><%=list.get(i).getNoticeName()%></td>
+						<td><%=list.get(i).getUserID()%></td>
 						<!-- 날짜를 우리가 보기 좋게 표현하기 위해서 한다. -->
 						<td><%=list.get(i).getNoticeDate().substring(0, 11) + list.get(i).getNoticeDate().substring(11, 13)
                         + "시" + list.get(i).getNoticeDate().substring(14, 16) + "분"%></td>

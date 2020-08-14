@@ -74,6 +74,11 @@
 	                script.println("</script>");
 	            }
 	        }
+	    } else {
+	        PrintWriter script = response.getWriter();
+	        script.println("<script>");
+	        script.println("alert('관리자만 작성할 수 있습니다.')");
+	        script.println("</script>");
 	    }
 
 	    /*    // 로그인 된 사람은 회원가입 페이지에 들어갈 수 없다

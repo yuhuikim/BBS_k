@@ -3,6 +3,8 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="bbs.Bbs"%>
 <%@ page import="bbs.BbsDAO"%>
+<%@ page import="notice.Notice"%>
+<%@ page import="notice.NoticeDAO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,25 +41,25 @@
 	        script.println("location.href = 'login.jsp'");
 	        script.println("</script>");
 	    }
-	    int bbsID = 0;
-	    if (request.getParameter("bbsID") != null) {
-	        bbsID = Integer.parseInt(request.getParameter("bbsID"));
+	    int noticeID = 0;
+	    if (request.getParameter("noticeID") != null) {
+	        noticeID = Integer.parseInt(request.getParameter("noticeID"));
 	    }
-	    if (bbsID == 0) {
+	    if (noticeID == 0) {
 	        PrintWriter script = response.getWriter();
 	        script.println("<script>");
 	        script.println("alert('유효하지 않은 글입니다')");
-	        script.println("location.href = 'bbs.jsp'");
+	        script.println("location.href = 'notice.jsp'");
 	        script.println("</script>");
 	    }
 	    //현재 넘어온 bbsID값을 갖고 해당 글을 가지고 온 다음에 실제로 이 글을 작성한 사람이 맞는지 확인해준다.
-	    Bbs bbs = new BbsDAO().getBbs(bbsID);
+	    Notice notice = new NoticeDAO().getNotice(noticeID);
 
-	    if (!userID.equals(bbs.getUserID())) {
+	    if (!userID.equals(notice.getUserID())) {
 	        PrintWriter script = response.getWriter();
 	        script.println("<script>");
 	        script.println("alert('권한이 없습니다')");
-	        script.println("location.href = 'bbs.jsp'");
+	        script.println("location.href = 'noticeID.jsp'");
 	        script.println("</script>");
 	    }
 	%>
@@ -77,7 +79,8 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="main.jsp">메인</a></li>
-				<li class="active"><a href="bbs.jsp">게시판</a></li>
+				<li><a href="bbs.jsp">게시판</a></li>
+				<li class="active"><a href="notice.jsp">공지사항</a></li>
 			</ul>
 			<%--        <%
             // 접속하기는 로그인이 되어있지 않은 경우만 나오게한다
@@ -117,7 +120,7 @@
 	</nav>
 	<div class="container">
 		<div class="row">
-			<form method="post" action="updateAction.jsp?bbsID=<%=bbsID%>">
+			<form method="post" action="updateAction2.jsp?bbsID=<%=noticeID%>">
 				<table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd">
 					<thead>
@@ -130,19 +133,18 @@
 					</thead>
 					<tbody>
 						<tr>
-						<%-- 
-							value="<%=bbs.getBbsTitle()%> 자기가 수정하기 전의 내용을 보여줄 수 있도록 한다. 
-							 --%>
+						<%-- 	value="<%=notice.getNoticeTitle()%> --%>
+							<!--자기가 수정하기 전의 내용을 보여줄 수 있도록 한다. -->
 							<td><input type="text" class="form-control"
-								placeholder="글 제목" name="bbsTitle" maxlength="50"
-								value="<%=bbs.getBbsTitle()%>"></td>
+								placeholder="글 제목" name="noticeTitle" maxlength="50"
+								value="<%=notice.getNoticeTitle()%>"></td>
 						</tr>
 						<tr>
 							<td><textarea class="form-control" placeholder="글 내용"
-									name="bbsContent" maxlength="2048" style="height: 350px"><%=bbs.getBbsContent()%></textarea></td>
+									name="bbsContent" maxlength="2048" style="height: 350px"><%=notice.getNoticeContent()%></textarea></td>
 						</tr>
 
-					<!-- 	<tr>
+						<!-- 	<tr>
 							<td><input type="file" name="file1"
 								accept="image/*" />
 							</td>

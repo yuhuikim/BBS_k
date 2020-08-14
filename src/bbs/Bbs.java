@@ -7,7 +7,7 @@ public class Bbs {
     private String bbsDate;
     private String bbsContent;
     private int bbsAvailable;
-    private String fileName;
+/*    private String fileName;
 
     public String getFileName() {
         return fileName;
@@ -16,7 +16,7 @@ public class Bbs {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
-
+*/
     public int getBbsID() {
         return bbsID;
     }

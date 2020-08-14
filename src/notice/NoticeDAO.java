@@ -13,7 +13,7 @@ public class NoticeDAO {
     // db랑 연결해주기
     public NoticeDAO() {
         try {
-            String dbURL = "jdbc:mysql://localhost:3306/Notice?serverTimezone=UTC";
+            String dbURL = "jdbc:mysql://localhost:3306/BBS?serverTimezone=UTC";
             String dbID = "root";
             String dbPassword = "rootpw";
             Class.forName("com.mysql.jdbc.Driver");
@@ -51,7 +51,7 @@ public class NoticeDAO {
     // 게시글 번호
     public int getNext() {
         // 내림차순으로 가장 마지막에 쓰인 것을 가져온다
-        String SQL = "SELECT NoticeID FROM Notice ORDER BY NoticeID DESC;";
+        String SQL = "SELECT userID FROM Notice ORDER BY noticeID DESC";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             rs = pstmt.executeQuery();
@@ -67,15 +67,15 @@ public class NoticeDAO {
     }
 
     // 게시글 작성함수
-    public int write(String NoticeTitle, String userID, String NoticeContent) {
+    public int write(String noticeTitle, String userID, String noticeContent) {
         String SQL = "INSERT INTO Notice VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, getNext());
-            pstmt.setString(2, NoticeTitle);
+            pstmt.setString(2, noticeTitle);
             pstmt.setString(3, userID);
             pstmt.setString(4, getDate());
-            pstmt.setString(5, NoticeContent);
+            pstmt.setString(5, noticeContent);
             pstmt.setInt(6, 1); // available이니까 처음에 글을 작성했을 때 보여지는 형태가 되어야 하기 때문에 1을 넣어주어야 한다.
 
             // insert가 성공적으로 수행했다면 0이상의 값이 반환된다.
@@ -88,9 +88,8 @@ public class NoticeDAO {
     }
 
     public ArrayList<Notice> getList(int pageNumber) {
-        String SQL = "SELECT * FROM Notice WHERE NoticeID < ? AND NoticeAvailable = 1 ORDER BY NoticeID DESC LIMIT 10"; // 내림차순으로
-                                                                                                                        // //
-        // 마지막에 쓰인
+        String SQL = "SELECT * FROM Notice WHERE noticeID < ? AND noticeAvailable = 1 ORDER BY noticeID DESC LIMIT 10"; // 내림차순으로
+                                                                                                                        // //// 마지막에 쓰인
 
         ArrayList<Notice> list = new ArrayList<Notice>();
         try {
@@ -98,16 +97,16 @@ public class NoticeDAO {
             pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                Notice Notice = new Notice();
-                Notice.setNoticeID(rs.getInt(1));
-                Notice.setNoticeName(rs.getString(2));
-                Notice.setNoticeTitle(rs.getString(3));
-                Notice.setNoticeDate(rs.getString(4));
-                Notice.setNoticeContent(rs.getString(5));
-                Notice.setNoticeAvailable(rs.getInt(6));
+                Notice notice = new Notice();
+                notice.setNoticeID(rs.getInt(1));
+                notice.setNoticeTitle(rs.getString(2));
+                notice.setUserID(rs.getString(3));
+                notice.setNoticeDate(rs.getString(4));
+                notice.setNoticeContent(rs.getString(5));
+                notice.setNoticeAvailable(rs.getInt(6));
 
                 // 리스트에 해당 인스턴스를 담아준다.
-                list.add(Notice);
+                list.add(notice);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,7 +117,7 @@ public class NoticeDAO {
 
     // 페이징 처리를 위한 함수 - 10단위로 게시글이 끊긴다고 하면 다음 페이지, 이전 페이지 버튼을 만들어주기 위해서
     public boolean nextPage(int pageNumber) {
-        String SQL = "SELECT * FROM Notice WHERE NoticeID < ? AND NoticeAvailable = 1";
+        String SQL = "SELECT * FROM Notice WHERE noticeID < ? AND noticeAvailable = 1";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
@@ -135,26 +134,26 @@ public class NoticeDAO {
     }
 
     // 하나의 글 내용을 불러오는 함수를 추가해준다.
-    public Notice getNotice(int NoticeID) // 특정한 아이디에 해당하는 게시글을 그대로 가져올 수 있도록 한다.
+    public Notice getNotice(int noticeID) // 특정한 아이디에 해당하는 게시글을 그대로 가져올 수 있도록 한다.
     {
-        String SQL = "SELECT * FROM Notice WHERE NoticeID = ?";
+        String SQL = "SELECT * FROM Notice WHERE noticeID = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
-            pstmt.setInt(1, NoticeID);
+            pstmt.setInt(1, noticeID);
             rs = pstmt.executeQuery();
             if (rs.next()) {
 
-                Notice Notice = new Notice();
+                Notice notice = new Notice();
 
-                Notice.setNoticeID(rs.getInt(1));
-                Notice.setNoticeTitle(rs.getString(2));
-                Notice.setNoticeName(rs.getString(3));
-                Notice.setNoticeDate(rs.getString(4));
-                Notice.setNoticeContent(rs.getString(5));
-                Notice.setNoticeAvailable(rs.getInt(6));
+                notice.setNoticeID(rs.getInt(1));
+                notice.setUserID(rs.getString(2));
+                notice.setNoticeTitle(rs.getString(3));
+                notice.setNoticeContent(rs.getString(4));
+                notice.setNoticeDate(rs.getString(5));
+                notice.setNoticeAvailable(rs.getInt(6));
 
                 // 6개의 변수를 다 받은 다음에 Notice인스턴스에 넣어서 getNotice함수를 불러낸 대상한테 반환해준다.
-                return Notice;
+                return notice;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -162,17 +161,16 @@ public class NoticeDAO {
         return null; // 해당 글이 존재하지 않는 경우에는 null을 반환한다.
     }
 
-    // 게시글 수정하는 update함수
-    public int update(int NoticeID, String NoticeTitle, String NoticeContent) {
+    // 게시글 수정하는 update함수 -- userID는 빼도 될 듯? 왜냐하면 admin만 가능하니까!
+    public int update(int noticeID, String noticeTitle, String noticeContent) {
 
         // 특정한 아이디에 해당하는 내용과 제목을 바꿔주겠다는 것임
-        String SQL = "UPDATE Notice SET NoticeTitle = ?, NoticeContent = ? WHERE NoticeID = ?";
+        String SQL = "UPDATE Notice SET noticeTitle = ?, noticeContent = ? WHERE noticeID = ?";
 
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, NoticeTitle);
-            pstmt.setString(2, NoticeContent);
-            pstmt.setInt(3, NoticeID);
+            pstmt.setString(1, noticeTitle);
+            pstmt.setString(2, noticeContent);
             return pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -181,12 +179,12 @@ public class NoticeDAO {
     }
 
     // 게시글 삭제하는 delete함수
-    public int delete(int NoticeID) {
+    public int delete(int noticeID) {
         // 글을 삭제하더라도 내용이 남아 있을 수 있게 NoticeAvailable= 0으로만 바꿔도 delete 효과를 낼 수 있다.
-        String SQL = "UPDATE Notice SET NoticeAvailable = 0  WHERE NoticeID = ?";
+        String SQL = "UPDATE Notice SET noticeAvailable = 0  WHERE noticeID = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
-            pstmt.setInt(1, NoticeID);
+            pstmt.setInt(1, noticeID);
             return pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
