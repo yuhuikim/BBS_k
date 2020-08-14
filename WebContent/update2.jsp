@@ -120,7 +120,7 @@
 	</nav>
 	<div class="container">
 		<div class="row">
-			<form method="post" action="updateAction2.jsp?bbsID=<%=noticeID%>">
+			<form method="post" action="updateAction2.jsp?noticeID=<%=noticeID%>">
 				<table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd">
 					<thead>
@@ -141,7 +141,7 @@
 						</tr>
 						<tr>
 							<td><textarea class="form-control" placeholder="글 내용"
-									name="bbsContent" maxlength="2048" style="height: 350px"><%=notice.getNoticeContent()%></textarea></td>
+									name="noticeContent" maxlength="4096" style="height: 350px"><%=notice.getNoticeContent()%></textarea></td>
 						</tr>
 
 						<!-- 	<tr>

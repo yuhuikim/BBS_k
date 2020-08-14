@@ -3,8 +3,6 @@
 <%@ page import="java.io.PrintWriter"%>
 
 <!-- 실제로 데이터베이스 클래스를 사용할 수 있도록 가져온다.-->
-<%@ page import="bbs.Bbs"%>
-<%@ page import="bbs.BbsDAO"%>
 <%@ page import="notice.Notice"%>
 <%@ page import="notice.NoticeDAO"%>
 
@@ -65,8 +63,8 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="main.jsp">메인</a></li>
-				<li class="active"><a href="bbs.jsp">과제게시판</a></li>
-				<li><a href="notice.jsp">공지사항</a></li>
+				<li><a href="bbs.jsp">과제게시판</a></li>
+				<li class="active"><a href="notice.jsp">공지사항</a></li>
 			</ul>
 			<%
 			    // 접속하기는 로그인이 되어있지 않은 경우만 나오게한다
@@ -122,10 +120,10 @@
                     .replaceAll("\n", "<br>")%></td>
 					</tr>
 					<tr>
-						<td>작성일자</td>
-						<td colspan="2"><%=notice.getNoticeDate().substring(0, 11) + notice.getNoticeDate().substring(11, 13) + "시"
+                        <td>작성일자</td>
+                        <td colspan="2"><%=notice.getNoticeDate().substring(0, 11) + notice.getNoticeDate().substring(11, 13) + "시"
                     + notice.getNoticeDate().substring(14, 16) + "분"%></td>
-					</tr>
+                    </tr>
 					<tr>
 						<td>내용</td>
 						<td colspan="2" style="min-height: 200px; text-align: left;">
@@ -150,7 +148,7 @@
 			<a href="update2.jsp?noticeID=<%=noticeID%>" class="btn btn-primary">수정</a>
 			<!-- onclick을 이용해서 삭제버튼을 누르면 한번 더 알림창이 뜨게 해준다. -->
 			<a onclick="return confirm('정말로 삭제하시겠습니까?')"
-				href="deleteAction.jsp?noticeID=<%=noticeID%>" class="btn btn-primary">삭제</a>
+				href="deleteAction2.jsp?noticeID=<%=noticeID%>" class="btn btn-primary">삭제</a>
 
 			<%
 			    }

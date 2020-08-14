@@ -51,7 +51,7 @@ public class NoticeDAO {
     // 게시글 번호
     public int getNext() {
         // 내림차순으로 가장 마지막에 쓰인 것을 가져온다
-        String SQL = "SELECT userID FROM Notice ORDER BY noticeID DESC";
+        String SQL = "SELECT noticeID FROM Notice ORDER BY noticeID DESC";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             rs = pstmt.executeQuery();
@@ -171,6 +171,7 @@ public class NoticeDAO {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, noticeTitle);
             pstmt.setString(2, noticeContent);
+            pstmt.setInt(3, noticeID);
             return pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
