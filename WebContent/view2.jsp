@@ -34,7 +34,10 @@
 	    if (request.getParameter("noticeID") != null) {
 	        //bbsID를 넣어준다. 정상적으로 bbsID가 넘어왔다면 view 페이지 안에서 이걸 이용하여 bbsID를 담은 다음에 처리할 수 있도록 한다.
 	        noticeID = Integer.parseInt(request.getParameter("noticeID"));
+<<<<<<< HEAD
 	        System.out.println(noticeID);
+=======
+>>>>>>> branch 'master' of https://github.com/yuhuikim/BBS_k.git
 
 	    }
 	    //bbsID가 0이라면 bbs.jsp에 다시 이동할 수 있게 해준다.

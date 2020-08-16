@@ -67,6 +67,7 @@ public class BbsDAO {
     }
 
     // 게시글 작성함수
+<<<<<<< HEAD
     public int write(String bbsTitle, String userID, String userDept,String bbsContent) {
         String SQL = "INSERT INTO BBS VALUES (?,?,?,?,?,?,?)";
         try {
@@ -154,6 +155,92 @@ public class BbsDAO {
                 bbs.setBbsDate(rs.getString(5));
                 bbs.setBbsContent(rs.getString(6));
                 bbs.setBbsAvailable(rs.getInt(7));
+=======
+    public int write(String bbsTitle, String userID, String bbsContent) {
+        String SQL = "INSERT INTO BBS VALUES (?,?,?,?,?,?)";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, getNext());
+            pstmt.setString(2, bbsTitle);
+            pstmt.setString(3, userID);
+            pstmt.setString(4, getDate());
+            pstmt.setString(5, bbsContent);
+            pstmt.setInt(6, 1); // available이니까 처음에 글을 작성했을 때 보여지는 형태가 되어야 하기 때문에 1을 넣어주어야 한다.
+
+            // insert가 성공적으로 수행했다면 0이상의 값이 반환된다.
+            return pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1; // 데이터베이스 오류
+    }
+
+    public ArrayList<Bbs> getList(int pageNumber) {
+        String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10"; // 내림차순으로 //
+                                                                                                            // 마지막에 쓰인
+
+        ArrayList<Bbs> list = new ArrayList<Bbs>();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Bbs bbs = new Bbs();
+                bbs.setBbsID(rs.getInt(1));
+                bbs.setBbsTitle(rs.getString(2));
+                bbs.setUserID(rs.getString(3));
+                bbs.setBbsDate(rs.getString(4));
+                bbs.setBbsContent(rs.getString(5));
+                bbs.setBbsAvailable(rs.getInt(6));
+
+                // 리스트에 해당 인스턴스를 담아준다.
+                list.add(bbs);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // getList를 실행했을 때 특정한 페이지에 맞는 게시글 리스트가 담겨서 반환이 된다.
+        return list;
+    }
+
+    // 페이징 처리를 위한 함수 - 10단위로 게시글이 끊긴다고 하면 다음 페이지, 이전 페이지 버튼을 만들어주기 위해서
+    public boolean nextPage(int pageNumber) {
+        String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                // 다음 페이지로 넘어갈 수 있다는 것을 알려줌
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // 다음 페이지로 넘어가지 않아도 된다는 것을 알려줌
+        return false;
+    }
+
+    // 하나의 글 내용을 불러오는 함수를 추가해준다.
+    public Bbs getBbs(int bbsID) // 특정한 아이디에 해당하는 게시글을 그대로 가져올 수 있도록 한다.
+    {
+        String SQL = "SELECT * FROM BBS WHERE bbsID = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, bbsID);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+
+                Bbs bbs = new Bbs();
+
+                bbs.setBbsID(rs.getInt(1));
+                bbs.setBbsTitle(rs.getString(2));
+                bbs.setUserID(rs.getString(3));
+                bbs.setBbsDate(rs.getString(4));
+                bbs.setBbsContent(rs.getString(5));
+                bbs.setBbsAvailable(rs.getInt(6));
+>>>>>>> branch 'master' of https://github.com/yuhuikim/BBS_k.git
 
                 // 6개의 변수를 다 받은 다음에 bbs인스턴스에 넣어서 getBbs함수를 불러낸 대상한테 반환해준다.
                 return bbs;

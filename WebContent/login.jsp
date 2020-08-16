@@ -49,9 +49,15 @@
 		<div class="col-lg-4">
 			<div class="jumbotron" style="padding-top: 20px;">
 				<form method="post" action="loginAction.jsp">
+<<<<<<< HEAD
 					<h3 style="text-align: center;">로그인</h3>
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="학번" name="userID" maxlength="20">
+=======
+					<h3 style="text-align: center;">로그인 화면</h3>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="아이디" name="userID" maxlength="20">
+>>>>>>> branch 'master' of https://github.com/yuhuikim/BBS_k.git
 					</div>
 					<div class="form-group">
 						<input type="password" class="form-control" placeholder="비밀번호" name="userPassword" maxlength="20">

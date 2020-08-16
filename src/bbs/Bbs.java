@@ -3,6 +3,7 @@ package bbs;
 public class Bbs {
     private int bbsID;
     private String bbsTitle;
+<<<<<<< HEAD
     private String userID; //학번
     
     private String userDept; //학과
@@ -33,6 +34,27 @@ public class Bbs {
     }
 
 	public void setBbsID(int bbsID) {
+=======
+    private String userID;
+    private String bbsDate;
+    private String bbsContent;
+    private int bbsAvailable;
+/*    private String fileName;
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+*/
+    public int getBbsID() {
+        return bbsID;
+    }
+
+    public void setBbsID(int bbsID) {
+>>>>>>> branch 'master' of https://github.com/yuhuikim/BBS_k.git
         this.bbsID = bbsID;
     }
 

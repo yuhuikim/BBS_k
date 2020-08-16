@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>BBS_k</name>
 	<comment></comment>
 	<projects>
+=======
+	<name>BBS</name>
+	<comment></comment>
+	<projects>
+		<project>commons-pool2-2.8.0</project>
+		<project>commons-dbcp2-2.7.0</project>
+		<project>commons-logging-1.2</project>
+		<project>taglibs-standard-impl-1.2.5</project>
+		<project>mysql-connector-java-8.0.21</project>
+		<project>taglibs-standard-spec-1.2.5</project>
+>>>>>>> branch 'master' of https://github.com/yuhuikim/BBS_k.git
 	</projects>
 	<buildSpec>
 		<buildCommand>

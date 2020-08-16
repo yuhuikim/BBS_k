@@ -77,7 +77,11 @@
 						<tr>
 							<!-- 장문의 글을 위해서  -->
 							<td><textarea class="form-control" placeholder="글 내용"
+<<<<<<< HEAD
 									name="bbsContent" maxlength="4096" style="height: 350px;"></textarea></td>
+=======
+									name="bbsContent" maxlength="2048" style="height: 350px;"></textarea></td>
+>>>>>>> branch 'master' of https://github.com/yuhuikim/BBS_k.git
 						</tr>
 					</tbody>
 				</table>

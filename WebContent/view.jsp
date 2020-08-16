@@ -117,8 +117,13 @@
                     .replaceAll("\n", "<br>")%></td>
 					</tr>
 					<tr>
+<<<<<<< HEAD
 						<td>학번</td>
 						<td colspan="2"><%=bbs.getUserDept().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+=======
+						<td>작성자</td>
+						<td colspan="2"><%=bbs.getUserID().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+>>>>>>> branch 'master' of https://github.com/yuhuikim/BBS_k.git
                     .replaceAll("\n", "<br>")%></td>
 					</tr>
 					<tr>

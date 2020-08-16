@@ -6,6 +6,7 @@ public class User { //유저 클래스
     private String userID;
     private String userPassword;
     private String userName;
+<<<<<<< HEAD
     private String userDept;
     private String userGender;
     private String userEmail;
@@ -19,6 +20,12 @@ public class User { //유저 클래스
 	}
 
 	public String getUserID() {
+=======
+    private String userGender;
+    private String userEmail;
+
+    public String getUserID() {
+>>>>>>> branch 'master' of https://github.com/yuhuikim/BBS_k.git
         return userID;
     }
 

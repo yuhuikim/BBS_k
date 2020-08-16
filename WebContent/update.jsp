@@ -78,6 +78,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="main.jsp">메인</a></li>
 				<li class="active"><a href="bbs.jsp">게시판</a></li>
+<<<<<<< HEAD
 				<li><a href="notice.jsp">공지사항</a></li>
 			</ul>
 			<%--        <%
@@ -141,6 +142,70 @@
 						<tr>
 							<td><textarea class="form-control" placeholder="글 내용"
 									name="bbsContent" maxlength="4096" style="height: 350px"><%=bbs.getBbsContent()%></textarea></td>
+=======
+			</ul>
+			<%--        <%
+            // 접속하기는 로그인이 되어있지 않은 경우만 나오게한다
+                if(userID == null)
+                {
+            %>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                <a href="#" class = "dropdown-toggle"
+                    data-toggle="dropdown" role ="button" aria-haspopup="true"
+                    aria-expanded="false">접속하기<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="login.jsp">로그인</a></li>
+                        <li><a href="join.jsp">회원가입</a></li>                    
+                    </ul>
+                </li>
+            </ul>
+            <%
+            // 로그인이 되어있는 사람만 볼수 있는 화면
+                } else {
+            %> 
+--%>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">회원관리<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="loginAction.jsp">로그아웃</a></li>
+					</ul></li>
+			</ul>
+			<%--             
+            <%
+                }
+            %> 
+--%>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<form method="post" action="updateAction.jsp?bbsID=<%=bbsID%>">
+				<table class="table table-striped"
+					style="text-align: center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<th colspan="2"
+								style="background-color: #eeeeee; text-align: center;">게시판
+								글 수정 양식</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+						<%-- 
+							value="<%=bbs.getBbsTitle()%> 자기가 수정하기 전의 내용을 보여줄 수 있도록 한다. 
+							 --%>
+							<td><input type="text" class="form-control"
+								placeholder="글 제목" name="bbsTitle" maxlength="50"
+								value="<%=bbs.getBbsTitle()%>"></td>
+						</tr>
+						<tr>
+							<td><textarea class="form-control" placeholder="글 내용"
+									name="bbsContent" maxlength="2048" style="height: 350px"><%=bbs.getBbsContent()%></textarea></td>
+>>>>>>> branch 'master' of https://github.com/yuhuikim/BBS_k.git
 						</tr>
 
 					<!-- 	<tr>

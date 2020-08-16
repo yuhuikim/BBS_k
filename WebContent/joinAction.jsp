@@ -20,6 +20,7 @@ scope="page"는 현재의 페이지 내에서만 사용한다고 범위를 지�
 <jsp:setProperty name="user" property="userID" />
 <jsp:setProperty name="user" property="userPassword" />
 <jsp:setProperty name="user" property="userName" />
+<<<<<<< HEAD
 <jsp:setProperty name="user" property="userDept" />
 <jsp:setProperty name="user" property="userGender" />
 <jsp:setProperty name="user" property="userEmail" />
@@ -72,6 +73,58 @@ scope="page"는 현재의 페이지 내에서만 사용한다고 범위를 지�
 	            PrintWriter script = response.getWriter();
 	            script.println("<script>");
 	            script.println("location.href='main.jsp'");
+=======
+<jsp:setProperty name="user" property="userGender" />
+<jsp:setProperty name="user" property="userEmail" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>가입 사이트</title>
+</head>
+<body>
+
+	<%
+	    String userID = null;
+	    if (session.getAttribute("userID") != null) {
+	        userID = (String) session.getAttribute("userID");
+	    }
+	    //이미 로그인한 사람은 또 다시 회원가입 페이지에 접속 할 수 없게 막아주는 것임
+	    if (userID != null) {
+	        PrintWriter script = response.getWriter();
+	        script.println("<script>");
+	        script.println("alert('이미 로그인이 되어있습니다.')");
+	        script.println("location.href='main.jsp'");
+	        script.println("</script>");
+	    }
+	    //모든 데이터들이 보내져야하기 때문에 각각의 데이터들이 잘 들어왔는지 확인을 해야한다.
+	    if (user.getUserID() == null || user.getUserPassword() == null || user.getUserName() == null
+	            || user.getUserGender() == null || user.getUserEmail() == null) {
+	        PrintWriter script = response.getWriter();
+	        script.println("<script>");
+	        script.println("alert('입력되지 않은 사항이 있습니다.')");
+	        script.println("history.back()");
+	        script.println("</script>");
+
+	    } else {
+	        UserDAO userDAO = new UserDAO();
+	        int result = userDAO.join(user);
+
+	        //동일한 아이디일 경우
+	        if (result == -1) {
+	            PrintWriter script = response.getWriter();
+	            script.println("<script>");
+	            script.println("alert('이미 존재하는 아이디입니다.')");
+	            script.println("history.back()");
+	            script.println("</script>");
+	        }
+	        //회원가입이 되었을 땐 바로 메인 페이지에 이동할 수 있도록 해준다.
+	        else {
+	            session.setAttribute("userID", user.getUserID());
+	            PrintWriter script = response.getWriter();
+	            script.println("<script>");
+	            script.println("location.href='main.jsp')");
+>>>>>>> branch 'master' of https://github.com/yuhuikim/BBS_k.git
 	            script.println("</script>");
 	        }
 	    }

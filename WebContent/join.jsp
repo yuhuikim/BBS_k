@@ -49,6 +49,7 @@
 			<div class="jumbotron" style="padding-top: 20px;">
 				<!-- joinAction 페이지로 넘겨주기 -->
 				<form method="post" action="joinAction.jsp">
+<<<<<<< HEAD
 					<h3 style="text-align: center;">회원가입</h3>
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="학번"
@@ -75,6 +76,30 @@
 								<input type="radio" name="userGender" autocomplete="off" value="남자" checked>남자
 							</label> <label class="btn btn-primary"> 
 							<input type="radio" name="userGender" autocomplete="off" value="여자" checked>여자
+=======
+					<h3 style="text-align: center;">회원가입 화면</h3>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="아이디"
+							name="userID" maxlength="20">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" placeholder="비밀번호"
+							name="userPassword" maxlength="20">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="이름"
+							name="userName" maxlength="20">
+					</div>
+					<!-- 남자 여자 선택할 수 있는 버튼 만들어주기 -->
+					<div class="form-group" style="text-align: center;">
+						<div class="btn-group" data-toggle="buttons">
+							<label class="btn btn-primary active"> 
+							<!-- active라고 되어 있는건 이미 선택되어있는 걸 뜻하므로 남자가 기본값으로 선택되어 있게 만들어주는 것임 -->
+								<input type="radio" name="userGender" autocomplete="off"
+								value="남자" checked>남자
+							</label> <label class="btn btn-primary"> <input type="radio"
+								name="userGender" autocomplete="off" value="여자" checked>여자
+>>>>>>> branch 'master' of https://github.com/yuhuikim/BBS_k.git
 							</label>
 						</div>
 					</div>

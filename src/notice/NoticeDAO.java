@@ -146,10 +146,17 @@ public class NoticeDAO {
                 Notice notice = new Notice();
 
                 notice.setNoticeID(rs.getInt(1));
+<<<<<<< HEAD
                 notice.setNoticeTitle(rs.getString(2));
                 notice.setUserID(rs.getString(3));
                 notice.setNoticeDate(rs.getString(4));
                 notice.setNoticeContent(rs.getString(5));
+=======
+                notice.setUserID(rs.getString(2));
+                notice.setNoticeTitle(rs.getString(3));
+                notice.setNoticeContent(rs.getString(4));
+                notice.setNoticeDate(rs.getString(5));
+>>>>>>> branch 'master' of https://github.com/yuhuikim/BBS_k.git
                 notice.setNoticeAvailable(rs.getInt(6));
 
                 // 6개의 변수를 다 받은 다음에 Notice인스턴스에 넣어서 getNotice함수를 불러낸 대상한테 반환해준다.

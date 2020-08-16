@@ -44,6 +44,7 @@
 	    if (session.getAttribute("userID") != null) {
 	        userID = (String) session.getAttribute("userID");
 	    }
+<<<<<<< HEAD
 	    
 	    //글쓰기 자체는 로그인이 되어 있어야만 할 수 있다.
         if (userID == null) {
@@ -54,6 +55,10 @@
             script.println("location.href = 'login.jsp'");
             script.println("</script>");
         } else if(userID.equals("admin")) {
+=======
+
+	    if (userID.equals("admin")) {
+>>>>>>> branch 'master' of https://github.com/yuhuikim/BBS_k.git
 	        if (notice.getNoticeTitle() == null || notice.getNoticeContent() == null) { //제목 또는 내용이 입력되지 않은 경우
 	            System.out.println(0);
 	            PrintWriter script = response.getWriter();
