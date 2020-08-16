@@ -20,8 +20,10 @@ scope="page"는 현재의 페이지 내에서만 사용한다고 범위를 지�
 <jsp:setProperty name="user" property="userID" />
 <jsp:setProperty name="user" property="userPassword" />
 <jsp:setProperty name="user" property="userName" />
+<jsp:setProperty name="user" property="userDept" />
 <jsp:setProperty name="user" property="userGender" />
 <jsp:setProperty name="user" property="userEmail" />
+
 <!DOCTYPE html>
 <html>
 <head>

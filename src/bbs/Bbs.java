@@ -3,7 +3,10 @@ package bbs;
 public class Bbs {
     private int bbsID;
     private String bbsTitle;
-    private String userID;
+    private String userID; //학번
+    
+    private String userDept; //학과
+    
     private String bbsDate;
     private String bbsContent;
     private int bbsAvailable;
@@ -17,11 +20,19 @@ public class Bbs {
         this.fileName = fileName;
     }
 */
+    public String getUserDept() {
+		return userDept;
+	}
+
+	public void setUserDept(String userDept) {
+		this.userDept = userDept;
+	}
+
     public int getBbsID() {
         return bbsID;
     }
 
-    public void setBbsID(int bbsID) {
+	public void setBbsID(int bbsID) {
         this.bbsID = bbsID;
     }
 

@@ -11,19 +11,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width" , initial-scale="1">
 
-<link rel="stylesheet" href="css/bootstrap.css"> <!-- 참조  -->
-<link rel="stylesheet" href="css/custom.css"> <!-- 참조  -->
+<link rel="stylesheet" href="css/bootstrap.css">
+<!-- 참조  -->
+<link rel="stylesheet" href="css/custom.css">
+<!-- 참조  -->
 
 <title>게시판 사이트</title>
 
 <!-- 이 페이지 안에서만 사용할 스타일 태그 넣어주기 - 밑줄이 그어지지 않고 글씨도 검은색으로 보여지게 된다.-->
-<style type = "text/css">
-    a, a:hover 
-    {
-        color: #000000; 
-        text-decoration: none;
-    }
-</style>    
+<style type="text/css">
+a, a:hover {
+	color: #000000;
+	text-decoration: none;
+}
+</style>
 
 </head>
 <body>
@@ -67,7 +68,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="login.jsp">로그인</a></li>
 						<li><a href="join.jsp">회원가입</a></li>
-						
+
 					</ul></li>
 			</ul>
 			<%
@@ -96,7 +97,8 @@
 					<tr>
 						<th style="background-color: #eeeeee; text-align: center;">번호</th>
 						<th style="background-color: #eeeeee; text-align: center;">제목</th>
-						<th style="background-color: #eeeeee; text-align: center;">작성자</th>
+						<th style="background-color: #eeeeee; text-align: center;">학번</th>
+						<th style="background-color: #eeeeee; text-align: center;">학과</th>
 						<th style="background-color: #eeeeee; text-align: center;">작성일</th>
 					</tr>
 				</thead>
@@ -113,6 +115,7 @@
 						<!-- 제목을 눌렀을 때 해당 게시글의 내용을 보여주는 페이지로 보여줘야 하기 때문에 view.jsp로 해준다.-->
 						<td><a href="view.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle()%></a></td>
 						<td><%=list.get(i).getUserID()%></td>
+						<td><%=list.get(i).getUserDept()%></td>
 						<!-- 날짜를 우리가 보기 좋게 표현하기 위해서 한다. -->
 						<td><%=list.get(i).getBbsDate().substring(0, 11) + list.get(i).getBbsDate().substring(11, 13) + "시"
 						+ list.get(i).getBbsDate().substring(14, 16) + "분"%></td>
@@ -127,12 +130,14 @@
 			<%
 				if (pageNumber != 1) { //1이 아니라면 2페이지 이상이란 것이고, 그렇다면 이전 페이지로 갈 수 있는 것이 필요하다.
 			%>
-			<a href="bbs.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn-success btn-arrow-left">이전</a>
+			<a href="bbs.jsp?pageNumber=<%=pageNumber - 1%>"
+				class="btn btn-success btn-arrow-left">이전</a>
 			<%
 				}
 				if (bbsDAO.nextPage(pageNumber + 1)) { //다음 페이지가 존재한다면
 			%>
-			<a href="bbs.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn-success btn-arrow-left">다음</a>
+			<a href="bbs.jsp?pageNumber=<%=pageNumber + 1%>"
+				class="btn btn-success btn-arrow-left">다음</a>
 			<%
 				}
 			%>

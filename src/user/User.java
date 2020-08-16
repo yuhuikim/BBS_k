@@ -6,10 +6,19 @@ public class User { //유저 클래스
     private String userID;
     private String userPassword;
     private String userName;
+    private String userDept;
     private String userGender;
     private String userEmail;
 
-    public String getUserID() {
+    public String getUserDept() {
+		return userDept;
+	}
+
+	public void setUserDept(String userDept) {
+		this.userDept = userDept;
+	}
+
+	public String getUserID() {
         return userID;
     }
 

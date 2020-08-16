@@ -67,16 +67,17 @@ public class BbsDAO {
     }
 
     // 게시글 작성함수
-    public int write(String bbsTitle, String userID, String bbsContent) {
-        String SQL = "INSERT INTO BBS VALUES (?,?,?,?,?,?)";
+    public int write(String bbsTitle, String userID, String userDept,String bbsContent) {
+        String SQL = "INSERT INTO BBS VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, getNext());
             pstmt.setString(2, bbsTitle);
             pstmt.setString(3, userID);
-            pstmt.setString(4, getDate());
-            pstmt.setString(5, bbsContent);
-            pstmt.setInt(6, 1); // available이니까 처음에 글을 작성했을 때 보여지는 형태가 되어야 하기 때문에 1을 넣어주어야 한다.
+            pstmt.setString(4, userDept);
+            pstmt.setString(5, getDate());
+            pstmt.setString(6, bbsContent);
+            pstmt.setInt(7, 1); // available이니까 처음에 글을 작성했을 때 보여지는 형태가 되어야 하기 때문에 1을 넣어주어야 한다.
 
             // insert가 성공적으로 수행했다면 0이상의 값이 반환된다.
             return pstmt.executeUpdate();
@@ -101,9 +102,10 @@ public class BbsDAO {
                 bbs.setBbsID(rs.getInt(1));
                 bbs.setBbsTitle(rs.getString(2));
                 bbs.setUserID(rs.getString(3));
-                bbs.setBbsDate(rs.getString(4));
-                bbs.setBbsContent(rs.getString(5));
-                bbs.setBbsAvailable(rs.getInt(6));
+                bbs.setUserDept(rs.getString(4));
+                bbs.setBbsDate(rs.getString(5));
+                bbs.setBbsContent(rs.getString(6));
+                bbs.setBbsAvailable(rs.getInt(7));
 
                 // 리스트에 해당 인스턴스를 담아준다.
                 list.add(bbs);
@@ -148,9 +150,10 @@ public class BbsDAO {
                 bbs.setBbsID(rs.getInt(1));
                 bbs.setBbsTitle(rs.getString(2));
                 bbs.setUserID(rs.getString(3));
-                bbs.setBbsDate(rs.getString(4));
-                bbs.setBbsContent(rs.getString(5));
-                bbs.setBbsAvailable(rs.getInt(6));
+                bbs.setUserDept(rs.getString(4));
+                bbs.setBbsDate(rs.getString(5));
+                bbs.setBbsContent(rs.getString(6));
+                bbs.setBbsAvailable(rs.getInt(7));
 
                 // 6개의 변수를 다 받은 다음에 bbs인스턴스에 넣어서 getBbs함수를 불러낸 대상한테 반환해준다.
                 return bbs;

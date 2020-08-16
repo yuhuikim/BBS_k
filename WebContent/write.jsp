@@ -77,7 +77,7 @@
 						<tr>
 							<!-- 장문의 글을 위해서  -->
 							<td><textarea class="form-control" placeholder="글 내용"
-									name="bbsContent" maxlength="2048" style="height: 350px;"></textarea></td>
+									name="bbsContent" maxlength="4096" style="height: 350px;"></textarea></td>
 						</tr>
 					</tbody>
 				</table>

@@ -117,8 +117,8 @@
                     .replaceAll("\n", "<br>")%></td>
 					</tr>
 					<tr>
-						<td>작성자</td>
-						<td colspan="2"><%=bbs.getUserID().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+						<td>학번</td>
+						<td colspan="2"><%=bbs.getUserDept().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
                     .replaceAll("\n", "<br>")%></td>
 					</tr>
 					<tr>
